@@ -1,0 +1,46 @@
+------------------------------------------------------------------
+序列化 反序列化
+_db_item.SerializeToString(&output);                      ret_msg1.SerializeToString(&buf1);    player_account->net_component().send(ret_msg1.msgid(), buf1.c_str(), buf1.size());
+_db_item.ParseFromArray(v.c_str(), v.size())                     buf1.c_str(), buf1.size()
+p->CopyFrom(battle_record);                内容拷贝
+------------------------------------------------------------------
+
+
+
+
+------------------------------------------------------------------
+multimap<int, int>::iterator iterBeg = testMap.lower_bound(searchItem);
+multimap<int, int>::iterator iterEnd = testMap.upper_bound(searchItem);
+for(;iterBeg != iterEnd;iterBeg++)
+{
+	if (iterBeg->second == it_data1->second->m_n_key)
+	{
+		m_map_score_key.erase(iterBeg);
+		break;
+	}
+}
+m_map_hurt_player.insert(pair<prop_value_t, charguid_t>(hert, charguid));
+------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

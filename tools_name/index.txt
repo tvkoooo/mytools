@@ -1,0 +1,32 @@
+Bypass_1.14.42                         抢票软件
+
+Everything.exe						   windows 搜索工具
+
+Git-2.21.0-64-bit.exe					git windows版本
+
+MobaXterm								ssh linux工具
+
+SourceTreeSetup-3.4.3					git 工具
+
+xampp-win32-1.8.3-5-VC11-installer      mysql 后台工具
+ 
+Another-Redis-Desktop-Manager			redis windows 界面工具
+
+BeyondCompare							windows 文件夹文件比较工具
+
+LaoMaoTao_v9.5_2011U盘启动盘			U盘启动工具
+
+
+pip-20.2.4.tar.gz     					python windows 	工具管理包
+
+Procexp.exe           					windows进程管理器    可以查看具体进程 函数模块调用情况
+
+
+pycharm-professional-2018.1.2           go python 平台工具
+
+Sublime Text Build 3211 x64 Setup		文本编辑器
+
+tortoiseGit_v2.10.1.0					git工具
+TortoiseSVN-1.8.9.26117-x64-svn-1.8.11  svn工具
+
+TscanCodeV2.14.24.windows				vs静态代码核对工具，用于发现明显语法，指针等错误工具

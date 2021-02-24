@@ -1,0 +1,75 @@
+ps aux|grep srv
+pwd
+
+mkdir querylog
+cp /home/3sgame/cl_5038/logs/gamesrv/bak/gamesrv_*_20210218*.log.gz  /home/3sgame/querylog/
+cp /home/3sgame/cl_5038/logs/gamesrv/gamesrv_*_20210218*.log  /home/3sgame/querylog/
+cp /home/3sgame/px_3692/logs/gamesrv/bak/player_*_20201104*.log.gz  /home/3sgame/querylog/
+cp /home/3sgame/px_3501/logs/gamesrv/player_*_20210218*.log  /home/3sgame/querylog/
+cp /home/3sgame/px_894/logs/dbsrv/bak/dbsrv_*_20201226*.log.gz  /home/3sgame/querylog/
+gzip -d *.gz  解压日志到当前目录 
+grep "1433094774981918720" gamesrv_*.log >games_1.log      
+grep "1433094774981918720" player*.log >playr_1.log      
+rm -rf querylog
+
+tail -f gamesr*| grep "2300085"
+tail -f game*.log |grep -E "cross_space_explore_mgr_t::save_defense_record|space_explore_mgr_t::save_exploit_record" 
+grep "send_award_log  208677833066676225" game*.log | grep 118 | wc -l
+grep -E "ywguildboss_component_t_player" player_log_*_20201007*.log >> getmy.log
+grep "log_reward_player\[240484624255680514\] bossid" gamesr*.*
+
+mysql -h127.0.0.1  -uroot -p3sgame@20190508 -P30712
+cat crash.log  查看日志
+
+gdb gamesrv111 错误core
+bt
+
+------------------------------------
+	1 清理redis 根据根据端口查询进程 <查看linux config redis 和 sql 端口号>
+		netstat -ntlp |grep 40713
+			tcp        0      0 0.0.0.0:40713               0.0.0.0:*                   LISTEN      28558/./src/redis-s             28558 是进程号
+		ll /proc/5350/          固定写法，查看进程id 信息       cwd -> /home/3sgame/redis-projectx
+		cd /home/3sgame/redis-projectx                          cd /root/redis_6/
+		kill -9 5350							//如果是看效果，不要执行这个，会删掉Redis 数据的         /root/redis_3
+		rm -rf dump.rdb							//如果是看效果，不要执行这个，会删掉Redis 数据的
+		./src/redis-server redis.conf			//如果是看效果，不要执行这个，这个是重启redis
+
+	2 清理 mysql    先登录         根据 config 查看 用户名<root> 端口<30712> 密码<123456> 数据库<projectx>
+		mysql -uroot -P3306 -p123456
+		show databases;
+		use projectx_186;
+		source /home/3sgame/projectx/release/db_init.sql;                     //如果是看效果，不要执行这个，会删掉mysql 数据的
+		show tables;    
+		SELECT count(*) FROM t_user;
+		select guild_name from t_guild;
+		select channel_uid from t_user;
+		select gui from t_user;
+		show FULL COLUMNS FROM t_guild; 
+------------------------------------
+services.msc
+sc delete KSD2Service  删除服务
+netstat -aon|findstr "9088"   查看端口
+tasklist | findstr "srv"
+tasklist | findstr "redis"
+
+redis     FLUSHALL 清空redis
+            FLUSHDB  清空当前数据库 key
+            SHUTDOWN 安全关闭redis
+            SAVE     BGSAVE出现异常可以 强制 SAVE 保存
+            BGSAVE     异步SAVE
+
+su 3sgame
+------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+

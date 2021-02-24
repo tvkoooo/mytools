@@ -1,0 +1,47 @@
+------------------------------------------------------------------
+subline 修改快捷键
+	preference—Key Bindings -Default 
+		{ "keys": ["ctrl+shift+u"], "command": "upper_case" },
+		{ "keys": ["ctrl+u"], "command": "lower_case" },
+------------------------------------------------------------------
+redis 后台启动
+	1. 进入 DOS窗口
+	2. 在进入Redis的安装目录
+		后台配置多redis 启动
+			cd D:\tvkoo\NProj\release\server\redis-win2.8.12\bin\release
+			redis-server --service-install redis.conf --service-name redis40712 --port 40712 --loglevel verbose
+			cd D:\tvkoo\NProj\release\server\redis-win2.8.12\bin\release1
+			redis-server --service-install redis1.conf --service-name redis40713 --port 40713 --loglevel verbose
+			cd D:\tvkoo\NProj\release\server\redis-win2.8.12\bin\release2
+			redis-server --service-install redis2.conf --service-name redis40714 --port 40714 --loglevel verbose
+		启动服务
+			net start redis40712
+			net start redis40713
+			net start redis40714
+		停止服务
+			net stop redis40712
+			net stop redis40713
+			net stop redis40714
+		查看服务
+			services.msc
+		删除服务
+			sc delete Redis
+		查看服务
+			tasklist | findstr "srv"
+			tasklist | findstr "redis"
+------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
