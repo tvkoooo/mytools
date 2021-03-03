@@ -1,0 +1,52 @@
+1	找到线程
+	ps aux|grep srv
+	
+2	gdb 线程
+	gdb -p 7359
+	
+3	文件打断点	
+	b tower_manager.cpp:346 
+	
+4	断点后需要继续执行
+	c
+	
+5	运行到断点
+
+6	下一步<n> / 或者查看<p 变量>
+	p base_
+	n
+	
+7	退出 quit
+
+---------------------------------------------
+gdb gamesrv                       启动
+b draw_card_assets.cpp:684        打断点
+r								  重新启动程序到断点
+	下一步<n> / 或者查看<p 变量>
+
+设置断点
+(gdb) b src/main.cpp:127
+(gdb) b src/main.cpp:127 if cnt==10
+(gdb) b &变量名
+
+(gdb) watch *地址    # 当地址所指内容发送变化时断点
+(gdb) watch var    #当var值变化时，断点
+(gdb) watch (condition)    #当条件符合时，断点
+
+---------------------------------------------------
+更改组
+su 
+密码
+chown -R 3sgame:3sgame BattleServer
+
+----------------------------------------------------
+端口
+netstat -anp     
+netstat -ntlp    tcp端口
+通过修改/etc/sysconfig/network/ifcfg-eth*文件直接配置，服务器重启不失效，建议使用。说明:SuSE10的配置文件名称为ifcfg-${MAC ADDRESS}
+
+--------------------------------------------------------
+
+
+
+
