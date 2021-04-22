@@ -23,8 +23,10 @@ m_map_hurt_player.insert(pair<prop_value_t, charguid_t>(hert, charguid));
 ------------------------------------------------------------------
 
 
-
-
+std::map<int, int>::iterator it = mymap.begin();
+int g_f = it->first;
+advance(it,3);
+int g_3 = it->first;
 
 
 

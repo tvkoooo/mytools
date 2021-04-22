@@ -1,0 +1,67 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+import socket as sock
+import protocol_test_pb2 as pytest
+import protocol_game_gm_pb2 as pygm
+import struct
+
+def conSoc(config):
+    tcp_socket = sock.socket(sock.AF_INET, sock.SOCK_STREAM)
+    try:
+        tcp_socket.connect((config['gamesrv_ip'], int(config['redis1_port'])))
+    except:
+        return
+    return tcp_socket
+
+def sendMsg(tcp_socket,testShow,msgid,SerializeData):
+    datalen = len(SerializeData)
+    size = datalen + 4 + 2
+    sendStruct =struct.pack('>IH',size,msgid)
+    try:
+        tcp_socket.send(sendStruct)
+    except:
+        testShow.set('TCP 连接错误')
+
+
+
+
+
+
+def hit_tcp_test(tcp_socket,testShow):
+    senddata = pytest.CSPing()
+    senddata.token = 123444
+    senddata.time = 56
+    print senddata.token
+    b = senddata.SerializeToString()
+    print b
+    sendData2 = pytest.CSPing()
+    sendData2.ParseFromString(b)
+    print(sendData2.token)
+    try:
+        tcp_socket.send(b)
+    except:
+        testShow.set('TCP 连接错误')
+
+def hit_tcp_gm(tcp_socket,testShow):
+    senddata = pygm.CSGMCommand()
+    senddata.token = 52741838082932736
+    senddata.cmd = 'additem 101 1'
+    print senddata.token
+    print senddata.msgid
+    b = senddata.SerializeToString()
+    print b
+    sendData2 = pygm.CSGMCommand()
+    sendData2.ParseFromString(b)
+    print(sendData2.token)
+
+    datalen = len(b)
+    size = datalen + 4 + 2
+    sendStruct =struct.pack('>IH',size,senddata.msgid)
+    print(sendStruct)
+    sendStruct += b
+    print(sendStruct)
+
+    try:
+        tcp_socket.send(sendStruct)
+    except:
+        testShow.set('TCP 连接错误')
